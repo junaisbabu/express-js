@@ -5,6 +5,9 @@ const express = require("express");
 const { dataMiniApp } = require("./routes/data");
 const { userRoutes } = require("./routes/users");
 
+//! start the connect function
+require('./models/connection');
+
 
 const app = express();
 

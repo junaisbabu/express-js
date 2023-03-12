@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
-const { addUser } = require("../models/user");
+// const { addUser } = require("../models/user_old");
+// require("../models/connection");
 
 const route = express.Router();
 

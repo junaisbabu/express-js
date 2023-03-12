@@ -35,8 +35,30 @@ function getUserDataByName(name) {
   return client.query(sql, [name]);
 }
 
+function getAllUser({ sortBy }) {
+  if (!["age", "name"].includes(sortBy.toLowerCase())) {
+    sortBy = "name";
+  }
+  let sql = `SELECT * FROM userdata ORDER BY ${sortBy}`;
+  return client.query(sql);
+}
+
+
+function changeName(newName, oldName) {
+  //! Two problems with writing your own SQL statement
+  //* 1. You have to be careful of SQL Injections
+  //* 2. You have to wirte SQL 
+
+  //! ORM helps at this level
+  // If you use an ORM
+  //    -> It's going to take care of SQL Injections
+  //    -> It's going to ensure that there are no SQL vulnerabily
+  //    -> It's going to write SQL for you
+  let sql = `UPDATE userdata SET name=${newName} WHERE name=${oldName}`;
+  return client.query(sql);
+}
 
 module.exports = {
   addUser,
-  getUserDataByName
-}
+  getUserDataByName,
+};

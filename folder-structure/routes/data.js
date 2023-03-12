@@ -3,21 +3,19 @@
 //! const app = express(); --> (not doing this again) It will be an full app
 
 const express = require("express");
+require('../models/user_new');
+
+// const { getUserDataByName, getAllUser } = require("../models/user_old");
+// require("../models/connection");
+
 const route = express.Router();
-const { getUserDataByName } = require("../models/user");
 
 route.get("/", function (req, res) {
   let sortBy = req.query.sortBy || "";
 
-  if (!["age", "name"].includes(sortBy.toLowerCase())) {
-    sortBy = "name";
-  }
-  let sql = `SELECT * FROM userdata ORDER BY ${sortBy}`;
-  //   client.query(sql).then((result) => {
-  //     res.json(result.rows);
-  //   });
-
-  res.end("response from /data");
+  getAllUser({ sortBy }).then((result) => {
+    res.render("tableData", { data: result.rows });
+  });
 });
 
 route.get("/:user", async function (req, res) {

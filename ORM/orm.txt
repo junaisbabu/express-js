@@ -1,0 +1,15 @@
+ORM
+Object Relational Mapper
+
+-> It's a library (that you install)
+    -> prevents SQL injection
+    -> generates SQL code for you
+
+There are 10+ of ORMs available for all kinds of databases.
+
+-> SQL-type of DBs
+    => Sequelize (popular)
+    => Knex.js
+    => TypeORM
+    => Prisma (popular)
+    => ...
