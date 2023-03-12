@@ -5,7 +5,15 @@ const { addUser } = require("../models/user");
 const route = express.Router();
 
 route.get("/", function (request, response) {
-  response.sendFile(path.resolve("views/index.html"));
+  // response.set("Keep-Alive", "timeout=10") //! this one already existed in header
+
+  //! creating own header -> if you are going to create your own header then you have start with `X` for identifying custom header
+  response
+    .set("X-My-Own-Header", "junais")
+    .sendFile(path.resolve("views/index.html"));
+
+  //! this will give you the 'Accept' header (you can get everything in Headers)
+  console.log(request.get("Accept"));
 });
 
 route.post("/add-user", function (req, res) {
