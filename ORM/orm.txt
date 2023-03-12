@@ -14,6 +14,22 @@ There are 10+ of ORMs available for all kinds of databases.
     => Prisma (popular)
     => ...
 
+-> MongoDB
+    -> mongoose
 
 
-==> ORM manage the SQL command / syntax -> It has their own function so you just use it, instead of creating you own SQL command <==
+
+==> ORM manage the (SQL / NON SQL) command / syntax -> It has their own function so you just use it, instead of creating you own SQL command <==
+
+
+* Example of TypeORM *
+    Sequelize -> SQL-based database
+    -> what if you wanted to change the DB after you wrote the app
+    -> installed mogodb, remove sequelize, remove sequelize statements,
+        -> rewrite them in mongoose
+
+    -> later if you wanted to go back to SQL
+        -> rewrite once again
+
+    What if I can create an library on TOP of the ORM -> TypeORM
+        TypeORM supports both SQL and Non SQL based.
