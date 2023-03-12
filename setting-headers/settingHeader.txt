@@ -1,0 +1,41 @@
+Setting Headers
+
+Res.Setting
+Response#set
+
+what is the set doing?
+
+set is Setting Headers
+
+
+Headers:
+    -> headers contain (often) meta data about the request itself
+
+        example :
+            Client -> GET /image --> Server (png, jpeg, gif) => server randomly choose one either png / gif / jpeg
+                Accept: image/png -> (this is extra information about the request)
+
+    -> Headers are key value pairs that contain extra information pertaining to the request, response or the client.
+
+    -> cache-control (won't make the api request again if the data already exist. It will store in a memory for particular time and give it to you when you want)
+
+
+
+
+Request
+    => Request Type (GET, POST, ...)
+    => Request URL
+    => (Request Body) Optionally
+        -> POST form data (any data)
+    => Request Headers (0 or more)
+
+Response
+    => Response Status Code (200, 201, 404, ...)
+    => Response body (image / html / video / audio / ...)  -> there may be no body
+    => Response headers (0 or more)
+
+
+
+
+There are lots of headers => https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
