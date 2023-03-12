@@ -13,3 +13,7 @@ There are 10+ of ORMs available for all kinds of databases.
     => TypeORM
     => Prisma (popular)
     => ...
+
+
+
+==> ORM manage the SQL command / syntax -> It has their own function so you just use it, instead of creating you own SQL command <==
