@@ -7,8 +7,8 @@ const { userRoutes } = require("./routes/users");
 
 //! start the connect function
 const { sequelize } = require("./models/connection");
-const User = require("./models/user_new");
-const Product = require("./models/product.model");
+require("./models/user_new");
+require("./models/product.model");
 
 sequelize.sync();
 
