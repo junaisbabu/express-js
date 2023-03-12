@@ -14,20 +14,8 @@ const options = {
 
 const connectionString = `postgres://${options.username}:${options.password}@${options.host}:${options.port}/${options.databaseName}`;
 
-const sequelize = new Sequelize(connectionString);
-
-
-async function connect() {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-      } catch (error) {
-        console.error('Unable to connect to the database:', error);
-      }
-}
-
-connect();
+let sequelize = new Sequelize(connectionString);
 
 module.exports = {
   sequelize,
-}
+};
