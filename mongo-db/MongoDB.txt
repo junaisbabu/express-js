@@ -1,0 +1,137 @@
+MongoDB database (document database)
+    --> MongoDB specifically made for web developer 
+    --> there is no restriction
+    --> we can add any type of data
+
+NoSQL database (not a very good term)
+
+second database
+
+-> first was postgre (SQL-type based, relational database)
+
+
+Why bother with a new DB?
+
+"Problems" of SQL
+
+-> create a TABLE before you add DATA
+    -> You have to define each column
+-> Let us say you have data
+    -> some rows have 3 fields but some other rows have 10 fields
+        -> you need to change the table structure
+-> ... more reasons
+
+
+MongoDB is very flexible
+
+ 
+
+ SQL
+    -> database
+        -> tables
+            -> rows
+
+Mongo
+    -> database
+        -> collections
+            -> documents ( object [as in javaScript] ) -> key vale pair
+
+
+MongoDB accetps objects -> a: {b: {c: 'data'}} => you can directly add to database but in SQL you have to (convert the object)
+
+
+
+IN SQL
+    -> Postgres app --> start server / command line
+    -> psql --> start shell
+
+In MongoDB, After install,
+    `mongod` --> starts the server
+    `mongo` --> database shell
+
+    if it's not start server (you can use this)
+        sudo mongod --dbpath="/var/lib/mongodb"   //! change the directory to your folder
+
+
+How to check for existing database
+    * show databases;
+
+How to use an existing database
+    * use name_of_the_database; 
+        -> if you type
+            * use abcd;  //! creates a new database called abcd (if it's not existed)
+
+
+How to check for existing collections
+    * use name_of_the_database; 
+    * show collections;
+
+
+How to create collection
+    -> you don't need to do anything special
+
+
+
+==> CRUD on collection <==
+
+How to add a document in a collection
+    documents => (serializable) objects
+    // db.name_of_the_collection.insert( {} )
+    * db.users.insert({username: 'junais', email: 'a@a.com'});
+
+    * db.xyzab.insert({username: 'junais', email: 'a@a.com'}); -> (`xyzab` => will be created if it doesn't exist and insert it)
+
+
+Read data from a collections
+    in SQL -> SELECT * FROM users;
+
+    * db.users.find();
+
+    -> find a single user
+        SQL -> SELECT username FROM users;
+        * db.users.find({}, {username: 'junais', _id: 0})       -> if _id is 0 then id won't be visible
+
+        => conditional filtering
+        SQL -> SELECT username FROM users WHERE age = 30;
+        * db.users.find({age: 30});
+        
+        SQL -> SELECT username FROM users WHERE age = 30 AND username = 'junais';
+        * db.users.find({age: 30, username: 'junais'});
+
+
+Update a document from a collection
+    //! which particular document to update
+    //! which part of the document you need to update
+
+    SQL -> UPDATE users SET username = 'junais' WHERE age = 20;
+
+    //! replaces the old document with the update object
+    //! update(query object, update object);
+    * db.users.update({email: 'a@a.com'}, {username: 'new thing here', email: 'newemail@new.com'}); 
+
+    //! new thing will be set and the old thing should not be replace  -> (in MongoDB anything start with `$` it's a special key)
+    db.users.update({username: 'junais'}, 
+        {"$set": 
+            {"favorite_book": "War and Peace"}
+        }
+    )
+
+
+Remove a document from a collection
+    * db.users.remove({});    // this will delete everything `{}` -> matches with everything
+
+    //! remove(query Object)
+    * db.users.remove({age: 30});
+
+
+--> Read about using Modifiers (`$`) <--
+
+
+_id
+    Requirement by Mongo
+        -> Every document always needs to have an _id
+            -> Either you provide
+                -> you can give any value
+            -> MongoDB itself provides
+                -> `ObjectId`
+        -> `_id` -> should be unique in that collection 
